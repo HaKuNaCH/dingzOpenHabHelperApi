@@ -10,6 +10,7 @@ Name: properties.config
   
 Content:
 ```
+exposeApiName=http://0.0.0.0:8000/
 openhabHostname=http://10.0.1.x:8080
 allowedDevices=F008D1C4D124,F008D1C4D125
 Token=yourOpenHabApiToken
