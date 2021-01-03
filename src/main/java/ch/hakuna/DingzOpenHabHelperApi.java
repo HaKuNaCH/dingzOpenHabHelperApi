@@ -90,11 +90,10 @@ public class DingzOpenHabHelperApi {
                     ManageConfig resetvalue = new ManageConfig();
                     resetvalue.setResetValue(RESETVALUE);
                 }
-                //System.out.println(st);
             }
         } catch (FileNotFoundException ex) {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            System.out.print(sdf.format(timestamp) + " ERROR - file 'properties.config' not found.\n");
+            System.out.print(sdf.format(timestamp) + " ERROR: File 'properties.config' not found.\n");
             System.exit(0);
         }
     }
