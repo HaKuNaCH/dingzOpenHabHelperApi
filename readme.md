@@ -1,5 +1,8 @@
 # dingzOpenHabHelperApi
 
+### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'
+The standalone jar in '/out/artifacts/dingzOpenHabHelperApi_jar/' is ready to use.  
+
 ### define 'properties.config'
 A config file in the same directoy as the main program is required.  
 For local testing place file in root directory of the project.
@@ -31,6 +34,13 @@ http://localhost:8000/itemName?mac=F008D1C4D124&index=3&action=2
 config:
 http://localhost:8000/application.wadl?detail=true
 ```
+parameter | description |
+--- | --- |
+itemName | the itemname in OpenHAB |
+mac | must be in properties.config, otherwise call will be rejected |
+index | not used, but is sent by dingz API call |
+action | update string for OpenHAB item |
+
 
 ### build standalone jar
 **setup**
@@ -52,14 +62,14 @@ replace
   
 **build/update**
 - Menu **Build** >> **Build Artifacts** >> Action **Build**
-- Then copy **dingzOpenHabHelperApi.jar** to target server /tbd
+- Then copy **dingzOpenHabHelperApi.jar** to target server /usr/share/dingzOpenHabHelperApi/
   
 **start standalone**  
 ``` 
 /usr/bin/java -jar /usr/share/dingzOpenHabHelperApi/dingzOpenHabHelperApi.jar
 ```
   
-###Linux Service  
+### Linux Service  
 Create user:
 ```
 groupadd -r dingzhelper  
