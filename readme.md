@@ -132,6 +132,8 @@ systemctl start dingz
 
 ### logfile output
 ```
+dd.mm.yyyy HH:MM:SS - INFO:  Jersey server starting at http://0.0.0.0:8000/
+dd.mm.yyyy HH:MM:SS - INFO:  Jersey server started at http://0.0.0.0:8000/
 dd.mm.yyyy HH:MM:SS - INFO:  Update item 'itemName' to value 'action' from device 'mac(index)' successfully sent.
 dd.mm.yyyy HH:MM:SS - ERROR: File 'properties.config' not found.
 dd.mm.yyyy HH:MM:SS - ERROR: Commands from device mac not allowed.
