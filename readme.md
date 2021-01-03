@@ -1,7 +1,7 @@
 # dingzOpenHabHelperApi
 
-### ready to use jar in /out/
-The standalone jar in /out/ is ready to use.  
+### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'
+The standalone jar in '/out/artifacts/dingzOpenHabHelperApi_jar/' is ready to use.  
 
 ### define 'properties.config'
 A config file in the same directoy as the main program is required.  
