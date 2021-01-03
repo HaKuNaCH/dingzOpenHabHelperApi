@@ -62,7 +62,7 @@ replace
 /usr/bin/java -jar /usr/share/dingzOpenHabHelperApi/dingzOpenHabHelperApi.jar
 ```
   
-###Linux Service  
+### Linux Service  
 Create user:
 ```
 groupadd -r dingzhelper  
