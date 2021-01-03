@@ -34,6 +34,13 @@ http://localhost:8000/itemName?mac=F008D1C4D124&index=3&action=2
 config:
 http://localhost:8000/application.wadl?detail=true
 ```
+parameter | description |
+--- | --- |
+itemName | the itemname in OpenHAB |
+mac | must be in properties.config, otherwise call will be rejected |
+index | not used, but is sent by dingz API call |
+action | update string for OpenHAB item |
+
 
 ### build standalone jar
 **setup**
