@@ -4,10 +4,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -18,9 +15,6 @@ import java.text.SimpleDateFormat;
 public class DingzOpenHabHelperApi {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-    // Base URI the Grizzly HTTP server will listen on
-    public static final String API_HOSTNAME_HTTPS = "http://0.0.0.0:8000/";
-
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
      *
@@ -29,11 +23,12 @@ public class DingzOpenHabHelperApi {
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig().packages("ch.hakuna");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        System.out.printf(sdf.format(timestamp) + " - Jersey server started at " + "%s%n", API_HOSTNAME_HTTPS);
-
+        System.out.println(sdf.format(timestamp) + " - INFO:  Jersey server starting at " + ManageConfig.getExposeApiName());
         // create and start a new instance of grizzly http server
-        // exposing the Jersey application at API_HOSTNAME:
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(API_HOSTNAME_HTTPS), rc);
+        // exposing the Jersey application at ManageConfig.getExposeApiName():
+        PrintStream newErr = new PrintStream(new ByteArrayOutputStream());
+        System.setErr(newErr);
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(ManageConfig.getExposeApiName()), rc);
     }
 
     /**
@@ -47,6 +42,8 @@ public class DingzOpenHabHelperApi {
                 server.shutdown();
             }
         });
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(sdf.format(timestamp) + " - INFO:  Jersey server started at " + ManageConfig.getExposeApiName());
     }
 
     /**
@@ -60,6 +57,12 @@ public class DingzOpenHabHelperApi {
 
             String st;
             while ((st = br.readLine()) != null) {
+                if (st.contains("exposeApiName=")) {
+                    String[] line = st.split("=");
+                    String EXPOSEAPINAME = line[1];
+                    ManageConfig exposeApiName = new ManageConfig();
+                    exposeApiName.setExposeApiName(EXPOSEAPINAME);
+                }
                 if (st.contains("openhabHostname=")) {
                     String[] line = st.split("=");
                     String OPENHABHOSTNAME = line[1];
@@ -93,7 +96,7 @@ public class DingzOpenHabHelperApi {
             }
         } catch (FileNotFoundException ex) {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            System.out.print(sdf.format(timestamp) + " ERROR: File 'properties.config' not found.\n");
+            System.out.println(sdf.format(timestamp) + " ERROR: File 'properties.config' not found.");
             System.exit(0);
         }
     }
