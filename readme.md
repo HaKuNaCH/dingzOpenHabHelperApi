@@ -1,5 +1,8 @@
 # dingzOpenHabHelperApi
 
+### ready to use jar in /out/
+The standalone jar in /out/ is ready to use.  
+
 ### define 'properties.config'
 A config file in the same directoy as the main program is required.  
 For local testing place file in root directory of the project.
@@ -52,7 +55,7 @@ replace
   
 **build/update**
 - Menu **Build** >> **Build Artifacts** >> Action **Build**
-- Then copy **dingzOpenHabHelperApi.jar** to target server /tbd
+- Then copy **dingzOpenHabHelperApi.jar** to target server /usr/share/dingzOpenHabHelperApi/
   
 **start standalone**  
 ``` 
