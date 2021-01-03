@@ -128,3 +128,12 @@ Enable/start service (output in /tmp/dingzOpenHabHelperApi.log):
 systemctl enable dingz.service
 systemctl start dingz
 ```
+
+### logfile output
+```
+dd.mm.yyyy HH:MM:SS - INFO:  Update item 'itemName' to value 'action' from device 'mac(index)' successfully sent.
+dd.mm.yyyy HH:MM:SS - ERROR: File 'properties.config' not found.
+dd.mm.yyyy HH:MM:SS - ERROR: Commands from device mac not allowed.
+dd.mm.yyyy HH:MM:SS - ERROR: Update item 'itemName' to value 'action' from device 'mac(index)' failed with HTTPXXX.
+dd.mm.yyyy HH:MM:SS - ERROR: OpenHAB not available.
+```
