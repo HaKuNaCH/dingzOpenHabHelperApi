@@ -24,6 +24,7 @@ public class UpdateOpenHabItem {
     private String mac;
 
     private String allowedDevices;
+    private String allowedIps;
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -33,10 +34,13 @@ public class UpdateOpenHabItem {
      */
     @GET
     @Produces("text/plain; charset=utf-8")
-    public String getFile(@Context UriInfo uriInfo, @PathParam("resource") String resource) {
+    public String getFile(@Context UriInfo uriInfo, @PathParam("resource") String resource, @Context org.glassfish.grizzly.http.server.Request re) {
 
         // get allowedDevices string
         allowedDevices = ManageConfig.getAllowedDevices();
+
+        // get allowedIps string
+        allowedIps = ManageConfig.getAllowedIps();
 
         // logoutput format
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -44,7 +48,12 @@ public class UpdateOpenHabItem {
         // API call result
         StringBuilder result = new StringBuilder();
 
+        // get ItemName
         setItemName(resource);
+
+        setMac("N/A");
+        setAction("N/A");
+        setButton("N/A");
 
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         for (String theKey : queryParams.keySet()) {
@@ -59,12 +68,13 @@ public class UpdateOpenHabItem {
             }
         }
 
-        if (!getAllowedDevices().contains(mac)) {
-            result.append("ERROR: Commands from device ").append(mac).append(" not allowed.");
+        // check if mac/IP is allowed
+        if ((!getAllowedDevices().contains(mac) && !getAllowedDevices().contains("ANY")) ||
+                (!getAllowedIps().contains(re.getRemoteAddr()) && !getAllowedIps().contains("ANY"))) {
+            result.append("ERROR: Commands from device ").append(mac).append(" / IP " + re.getRemoteAddr() + " not allowed.");
             System.out.println(sdf.format(timestamp) + " - " + result);
             throw new EmptyStackException();
         } else {
-
             // call openHab API
             OpenHabConnect openHabConnect = new OpenHabConnect(this.getItemName(), this.getAction(), this.getButton(), this.getMac());
             String openhabResponse = openHabConnect.getOpenHabResponse();
@@ -109,5 +119,9 @@ public class UpdateOpenHabItem {
     public void setAllowedDevices(String allowedDevices) {
         this.allowedDevices = allowedDevices;
     }
+
+    public String getAllowedIps() { return allowedIps; }
+
+    public void setAllowedIps(String allowedIps) { this.allowedIps = allowedIps; }
 
 }

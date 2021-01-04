@@ -62,9 +62,23 @@ public class OpenHabConnect {
             HttpResponse response = httpclient.execute(httpPut);
             int responseCode = response.getStatusLine().getStatusCode();
 
+            // build response string, depending on parameters given
+            String device = "";
+            if (!mac.equals("N/A")) {
+                device = device + " from device " + mac;
+            }
+
+            if (!button.equals("N/A")) {
+                if (device.equals("")) {
+                    device = device + " from button " + button;
+                } else {
+                    device = device + "/button " + button;
+                }
+            }
+
             if (responseCode == 202 || responseCode == 200) {
                 // everything is fine, handle the response
-                result = "INFO:  Update item '" + openHabItemName + "' to value '" + action + "' from device '" + mac + "(" + button + ")' successfully sent.";
+                result = "INFO:  Update item '" + openHabItemName + "' to value '" + action + "'" + device + " successfully sent.";
 
                 // check if reset value is required
                 if (ManageConfig.getResetMode().equals("true")) {

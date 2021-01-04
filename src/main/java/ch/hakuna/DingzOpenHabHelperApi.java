@@ -75,6 +75,12 @@ public class DingzOpenHabHelperApi {
                     ManageConfig allowedDevices = new ManageConfig();
                     allowedDevices.setAllowedDevices(ALLOWEDDEVICES);
                 }
+                if (st.contains("allowedIps=")) {
+                    String[] line = st.split("=");
+                    String ALLOWEDIPS = line[1];
+                    ManageConfig allowedIps = new ManageConfig();
+                    allowedIps.setAllowedIps(ALLOWEDIPS);
+                }
                 if (st.contains("Token=")) {
                     String[] line = st.split("=");
                     String TOKEN = line[1];

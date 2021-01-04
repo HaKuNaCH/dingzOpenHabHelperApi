@@ -12,7 +12,8 @@ Content:
 ```
 exposeApiName=http://0.0.0.0:8000/
 openhabHostname=http://10.0.1.x:8080
-allowedDevices=F008D1C4D124,F008D1C4D125
+allowedDevices=ANY,F008D1C4D124,F008D1C4D125
+allowedIps=ANY,10.0.1.25
 Token=yourOpenHabApiToken
 ResetMode=true
 ResetValue=0
@@ -38,7 +39,7 @@ http://localhost:8000/application.wadl?detail=true
 parameter | description |
 --- | --- |
 itemName | the itemname in OpenHAB |
-mac | must be in properties.config, otherwise call will be rejected |
+mac | must be in properties.config, or ANY, otherwise call will be rejected |
 index | not used, but is sent by dingz API call |
 action | update string for OpenHAB item |
 
@@ -95,6 +96,7 @@ properties.config
 ```
 openhabHostname=http://10.0.1.x:8080
 allowedDevices=F008D1C4D124,F008D1C4D125
+allowedIps=ANY,10.0.1.25
 Token=yourOpenHabApiToken
 ResetMode=true
 ResetValue=0
@@ -130,7 +132,7 @@ systemctl enable dingz.service
 systemctl start dingz
 ```
 
-### logfile output
+### logfile output samples
 ```
 dd.mm.yyyy HH:MM:SS - INFO:  Jersey server starting at http://0.0.0.0:8000/
 dd.mm.yyyy HH:MM:SS - INFO:  Jersey server started at http://0.0.0.0:8000/

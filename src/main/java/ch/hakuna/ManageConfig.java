@@ -5,11 +5,13 @@ public class ManageConfig {
     private static String exposeApiName;
     private static String openhabHostname;
     private static String allowedDevices;
+    private static String allowedIps;
     private static String openhabToken;
     private static String resetMode;
     private static String resetValue;
 
     public static String getExposeApiName() { return exposeApiName; }
+
     public void setExposeApiName(String exposeApiName) { ManageConfig.exposeApiName = exposeApiName; }
 
     public static String getOpenhabHostname() {
@@ -25,6 +27,10 @@ public class ManageConfig {
     public void setAllowedDevices(String allowedDevices) {
         ManageConfig.allowedDevices = allowedDevices;
     }
+
+    public static String getAllowedIps() { return allowedIps; }
+
+    public void setAllowedIps(String allowedIps) { ManageConfig.allowedIps = allowedIps; }
 
     public static String getOpenhabToken() {
         return openhabToken;
