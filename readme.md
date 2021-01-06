@@ -35,15 +35,16 @@ Use classpath of module: dingzOpenHabHelperApi
 
 **URL's**
 ```
-http://localhost:8000/itemName?mac=F008D1C4D124&index=3&action=2
-
-config:
-http://localhost:8000/application.wadl?detail=true
+http://localhost:8000/itemName?mac=F008D1C4D124&index=3&action=2  
+http://localhost:8000/itemName?index=3&action=2  
+http://localhost:8000/itemName?action=2  
 ```
+query parameters mac & index are not mandatory  
+
 parameter | description |
 --- | --- |
 itemName | the itemname in OpenHAB |
-mac | must be in properties.config, or ANY, otherwise call will be rejected |
+mac | must be in properties.config, when not in url, set allowedDevices=ANY, otherwise call will be rejected |
 index | not used, but is sent by dingz API call |
 action | update string for OpenHAB item |
 
