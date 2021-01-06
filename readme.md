@@ -1,5 +1,9 @@
 # dingzOpenHabHelperApi
 
+The API helper receives an API request without API token from any device and forward it to OpenHAB via PUT request (Updates the state of an OpenHAB item) and adds the API token to the request.  
+Restriction to the API can be done with query parameter mac=xxx and by source IP address.  
+If no restriction is required, add ANY to the allowedDevices/allowedIps config.  
+
 ### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'
 The standalone jar in '/out/artifacts/dingzOpenHabHelperApi_jar/' is ready to use.  
 
