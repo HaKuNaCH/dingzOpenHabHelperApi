@@ -5,7 +5,7 @@ Restriction to the API can be done with query parameter mac=xxx and by source IP
 If no restriction is required, add ANY to the allowedDevices/allowedIps config.  
 
 ### Dingz config  
-Action URL in Dingz  
+Define "Action URL (generic)" in Dingz  
 ```
 get://ApiHelperHostIP:8000/itemName
 ```
