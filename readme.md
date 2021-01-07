@@ -4,7 +4,7 @@ The API helper receives an API request without API token from any device and for
 Restriction to the API can be done with query parameter mac=xxx and by source IP address.  
 If no restriction is required, add ANY to the allowedDevices/allowedIps config.  
 
-### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'  
+### Dingz config  
 Action URL in Dingz  
 ```
 get://ApiHelperHostIP:8000/itemName
