@@ -9,7 +9,7 @@ Define "Action URL (generic)" in Dingz
 ```
 get://ApiHelperHostIP:8000/itemName
 ```
-results in API call to the helkper API:
+results in API call to the helper API:
 ```
 http://ApiHelperHostIP:8000/itemName?mac=XXXXXXXXXXX4&index=x&action=x  
 ```
