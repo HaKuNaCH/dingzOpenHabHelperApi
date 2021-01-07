@@ -70,9 +70,9 @@ public class OpenHabConnect {
 
             if (!button.equals("N/A")) {
                 if (device.equals("")) {
-                    device = device + " from button " + button;
+                    device = device + " from button_" + button;
                 } else {
-                    device = device + "/button " + button;
+                    device = device + "/button_" + button;
                 }
             }
 
@@ -87,7 +87,7 @@ public class OpenHabConnect {
                 }
 
             } else {
-                result = "ERROR: Update item '" + openHabItemName + "' to value '" + action + "' from device '" + mac + "(" + button + ")' failed with HTTP" + responseCode + ".";
+                result = "ERROR: Update item '" + openHabItemName + "' to value '" + action + "'" + device + " failed with HTTP" + responseCode + ".";
             }
 
         } catch (IOException ex) {
