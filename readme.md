@@ -4,6 +4,16 @@ The API helper receives an API request without API token from any device and for
 Restriction to the API can be done with query parameter mac=xxx and by source IP address.  
 If no restriction is required, add ANY to the allowedDevices/allowedIps config.  
 
+### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'  
+Action URL in Dingz  
+```
+get://ApiHelperHostIP:8000/itemName
+```
+results in API call to the helkper API:
+```
+http://ApiHelperHostIP:8000/itemName?mac=XXXXXXXXXXX4&index=x&action=x  
+```
+
 ### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'
 The standalone jar in '/out/artifacts/dingzOpenHabHelperApi_jar/' is ready to use.  
 
