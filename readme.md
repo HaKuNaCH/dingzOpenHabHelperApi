@@ -32,6 +32,15 @@ Token=yourOpenHabApiToken
 ResetMode=true
 ResetValue=0
 ```
+property | description |
+--- | --- |
+exposeApiName | URL where the API will be exposed (0.0.0.0 -> can be accessed from anywhere in the subnet) |
+openhabHostname | URL or DNS alias of the OpenHAB instance incl. port |
+allowedDevices | list of allowed devices, will be compared with query parameter "mac" from API call |
+allowedIps | allowed IP addresses for incoming requests |
+Token | OpenHAB API token |
+ResetMode | true or false, if true the state will be set to "action" query parameter and immediately back to "ResetValue" |
+ResetValue | if "ResetMode" is true, the item value will be set to this value after every update |
 
 ### run configuration for local test
 ```
