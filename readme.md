@@ -109,9 +109,10 @@ rm -Rf /tmp/dingzOpenHabHelperApi.log
 ```
 properties.config
 ```
+exposeApiName=http://0.0.0.0:8000/
 openhabHostname=http://10.0.1.x:8080
 allowedDevices=F008D1C4D124,F008D1C4D125 [or ANY]
-allowedIps=10.0.1.25 [or ANY]
+allowedIps=10.0.1.25,10.0.1.24 [or ANY]
 Token=yourOpenHabApiToken
 ResetMode=true
 ResetValue=0
