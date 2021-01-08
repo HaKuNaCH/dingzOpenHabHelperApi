@@ -157,6 +157,31 @@ systemctl enable dingz.service
 systemctl start dingz
 ```
 
+### Windows Service
+use nssm.exe
+to install service open CMD, cd to the directory where the API helper is stored
+
+```
+new:  nssm install dingz
+edit: nssm edit dingz  
+```
+
+use defaults, except:
+=====================
+```
+Path:              C:\..your path..\dingzOpenHabHelperApi.jar
+Startup directory: C:\..your path..\
+Display Name:      dingz
+Startup Type:      Automatic
+Logon:             Local System Account
+Process:           Normal
+Console Window:    tick
+Shutdown:          tick all
+Output (stdout):   C:\..your path..\dingzOpenHabHelperApi.log
+Error (stderr):    C:\..your path..\dingzOpenHabHelperApi.log
+File Rotation:     Rotate File / 1000000 bytes
+```
+
 ### logfile output samples
 ```
 dd.mm.yyyy HH:MM:SS - INFO:  Jersey server starting at http://0.0.0.0:8000/
