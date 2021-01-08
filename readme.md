@@ -158,14 +158,12 @@ systemctl start dingz
 ```
 
 ### Windows Service (not tested)
-use nssm.exe (https://nssm.cc/)
-to install service open CMD, cd to the directory where the API helper is stored
-
+use nssm.exe (https://nssm.cc/)  
+to install service open CMD, cd to the directory where the API helper is stored  
 ```
 new:  nssm install dingz
 edit: nssm edit dingz  
 ```
-
 use defaults, except:
 ```
 Path:              C:\..your path..\dingzOpenHabHelperApi.jar
