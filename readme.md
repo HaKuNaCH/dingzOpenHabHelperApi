@@ -167,7 +167,6 @@ edit: nssm edit dingz
 ```
 
 use defaults, except:
-=====================
 ```
 Path:              C:\..your path..\dingzOpenHabHelperApi.jar
 Startup directory: C:\..your path..\
