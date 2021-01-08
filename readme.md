@@ -157,7 +157,7 @@ systemctl enable dingz.service
 systemctl start dingz
 ```
 
-### Windows Service
+### Windows Service (not tested)
 use nssm.exe
 to install service open CMD, cd to the directory where the API helper is stored
 
