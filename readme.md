@@ -3,8 +3,7 @@ The API helper receives an API request without API token from any device and for
 Restrictions to the API can be done with query parameter mac=xxx and by source IP address.  
 If no restrictions are required (not recommended), add ANY to the allowedDevices/allowedIps config.  
   
-ONLY for OpenHAB3.x, for OpenHAB2.x you need to comment out these lines and rebuild standalone jar:  
-  
+ONLY for OpenHAB3.x, for OpenHAB2.x you need to comment out these lines and rebuild standalone jar.    
 class: OpenHabConnect
 ```
             httpPut.addHeader("Authorization", "Bearer " + OPENHAB_TOKEN);
