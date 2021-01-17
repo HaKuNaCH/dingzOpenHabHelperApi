@@ -144,7 +144,8 @@ chmod -R 700 /usr/share/dingzOpenHabHelperApi/properties.config
 -rwxrwx---. 1 dingzhelper dingzhelper     134 Jan 16 16:24 dingzOpenHabHelperApiStop.sh
 -rw-------. 1 dingzhelper dingzhelper     263 Jan 17 10:36 properties.config
 ```
-Service (/etc/systemd/system/dingz.service):
+  
+### Service (/etc/systemd/system/dingz.service) -> tested in CentOS8:
 ```
 [Unit]
 Description=dingz
@@ -171,7 +172,7 @@ systemctl enable dingz.service
 systemctl start dingz
 ```
 
-### Windows Service (not tested)
+### Windows Service -> not tested
 use nssm.exe (https://nssm.cc/)  
 to install service open CMD, cd to the directory where the API helper is stored  
 ```
