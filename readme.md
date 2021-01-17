@@ -1,5 +1,14 @@
 # dingzOpenHabHelperApi
 
+ONLY for OpenHAB3.x, for OpenHAB2.x you need to comment out these lines:  
+  
+class: OpenHabConnect
+```
+            httpPut.addHeader("Authorization", "Bearer " + OPENHAB_TOKEN);
+            httpPut.addHeader("Accept", "accept: */*");
+            httpPut.addHeader("Content-Type", "text/plain");
+ ```
+  
 The API helper receives an API request without API token from any device and forwards it to OpenHAB via PUT request (Updates the state of an OpenHAB item). The OpenHAB API token wil be added to the request.  
 Restrictions to the API can be done with query parameter mac=xxx and by source IP address.  
 If no restrictions are required (not recommended), add ANY to the allowedDevices/allowedIps config.  
