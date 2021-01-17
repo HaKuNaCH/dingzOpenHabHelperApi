@@ -136,6 +136,13 @@ ResetValue=0
 Adjust permissions:
 ```
 chown -R dingzhelper:dingzhelper /usr/share/dingzOpenHabHelperApi
+chmod -R 770 /usr/share/dingzOpenHabHelperApi/*
+chmod -R 700 /usr/share/dingzOpenHabHelperApi/properties.config  
+
+-rwxrwx---. 1 dingzhelper dingzhelper 8649249 Jan 17 09:31 dingzOpenHabHelperApi.jar
+-rwxrwx---. 1 dingzhelper dingzhelper     159 Jan 17 10:39 dingzOpenHabHelperApiStart.sh
+-rwxrwx---. 1 dingzhelper dingzhelper     134 Jan 16 16:24 dingzOpenHabHelperApiStop.sh
+-rw-------. 1 dingzhelper dingzhelper     263 Jan 17 10:36 properties.config
 ```
 Service (/etc/systemd/system/dingz.service):
 ```
