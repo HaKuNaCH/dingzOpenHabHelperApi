@@ -145,7 +145,7 @@ chmod -R 700 /usr/share/dingzOpenHabHelperApi/properties.config
 -rw-------. 1 dingzhelper dingzhelper     263 Jan 17 10:36 properties.config
 ```
   
-### Service (/etc/systemd/system/dingz.service) -> tested in CentOS8:
+Service (/etc/systemd/system/dingz.service) -> tested in CentOS8
 ```
 [Unit]
 Description=dingz
