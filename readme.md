@@ -22,7 +22,7 @@ http://ApiHelperHostIP:8000/itemName?mac=XXXXXXXXXXX4&index=x&action=x
 ```
 
 ### ready to use jar in '/out/artifacts/dingzOpenHabHelperApi_jar/'
-The standalone jar in '/out/artifacts/dingzOpenHabHelperApi_jar/' is ready to use.  
+The actual standalone jar can be found under 'releases'.
 
 ### define 'properties.config'
 A config file in the same directoy as the main program is required.  
