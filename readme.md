@@ -1,5 +1,5 @@
 # dingzOpenHabHelperApi   
-The API helper receives an API request without API token from any device and forwards it to OpenHAB via PUT request (Updates the state of an OpenHAB item). The OpenHAB API token wil be added to the request.  
+The API helper receives an API GET request without API token from any device and forwards it to OpenHAB via PUT request (Updates the state of an OpenHAB item). The OpenHAB API token wil be added to the request.  
 Restrictions to the API can be done with query parameter mac=xxx and by source IP address.  
 If no restrictions are required (not recommended), add ANY to the allowedDevices/allowedIps config.  
   
