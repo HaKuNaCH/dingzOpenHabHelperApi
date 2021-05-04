@@ -26,7 +26,7 @@ public class OpenHabConnect {
     private String mac;
 
     // Example:
-    // https://10.0.1.9:8444/rest/items/dingzButton3/state
+    // http://10.0.1.9:8082/rest/items/dingzButton3/state
 
     /**
      * Constructor
@@ -54,13 +54,14 @@ public class OpenHabConnect {
 
             HttpPut httpPut = new HttpPut(this.getOpenHabUri());
             httpPut.addHeader("Authorization", "Bearer " + OPENHAB_TOKEN);
-            httpPut.addHeader("Accept", "accept: */*");
+            httpPut.addHeader("Accept", "*/*");
             httpPut.addHeader("Content-Type", "text/plain");
 
             httpPut.setEntity(new StringEntity(this.getAction()));
 
             HttpResponse response = httpclient.execute(httpPut);
             int responseCode = response.getStatusLine().getStatusCode();
+            //String responseMessage = response.getStatusLine().getReasonPhrase();
 
             // build response string, depending on parameters given
             String device = "";
