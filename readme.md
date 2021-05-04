@@ -7,7 +7,7 @@ ONLY for OpenHAB3.x, for OpenHAB2.x you need to comment out these lines and rebu
 class: OpenHabConnect
 ```
             httpPut.addHeader("Authorization", "Bearer " + OPENHAB_TOKEN);
-            httpPut.addHeader("Accept", "accept: */*");
+            httpPut.addHeader("Accept", "*/*");
             httpPut.addHeader("Content-Type", "text/plain");
  ```
   
