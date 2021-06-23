@@ -43,7 +43,7 @@ public class OpenHabConnect {
 
 
     /**
-     * Call GitHub API for getting metadata
+     * Call Dingz API (PUT)
      */
     protected String getOpenHabResponse() {
 
