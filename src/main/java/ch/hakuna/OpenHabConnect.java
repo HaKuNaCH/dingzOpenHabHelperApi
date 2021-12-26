@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 
 public class OpenHabConnect {
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
     private static final String OPENHAB_BASEPATH = "/rest/items/";
 
     private static final String OPENHAB_HOSTNAME = ManageConfig.getOpenhabHostname();

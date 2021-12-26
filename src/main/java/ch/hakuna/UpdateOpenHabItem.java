@@ -16,7 +16,7 @@ import java.util.EmptyStackException;
  */
 @Path("{resource: [a-zA-Z_0-9\\\\/.-]*}")
 public class UpdateOpenHabItem {
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
 
     private String itemName;
     private String action;
@@ -56,6 +56,10 @@ public class UpdateOpenHabItem {
         setButton("N/A");
 
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+
+        //DEBUG to get the parameters
+        //System.out.println(sdf.format(timestamp) + " - " + "DEBUG: " + queryParams);
+
         for (String theKey : queryParams.keySet()) {
             if (theKey.equals("index")) {
                 setButton(queryParams.getFirst(theKey));

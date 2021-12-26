@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  * Main class.
  */
 public class DingzOpenHabHelperApi {
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
