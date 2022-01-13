@@ -25,7 +25,7 @@ http://ApiHelperHostIP:8000/itemName?mac=XXXXXXXXXXX4&index=x&action=x
 The actual standalone jar can be found under 'releases'.
 
 ### define 'properties.config'
-A config file in the same directoy as the main program is required.  
+A config file in the same directory as the main program is required.  
 For local testing place file in root directory of the project.
 Name: properties.config  
   
@@ -59,7 +59,7 @@ Working Directory: e.g. /Users/remo/Documents/workspace/dingzOpenHabHelperApi
 Use classpath of module: dingzOpenHabHelperApi
 ```
 
-**URL's**
+**URLs**
 ```
 http://localhost:8000/itemName?mac=F008D1C4D124&index=3&action=2  
 http://localhost:8000/itemName?index=3&action=2  
@@ -78,7 +78,7 @@ query parameters mac & index are not mandatory
 ### build standalone jar
 **setup**
 
-Menu **File** >> **Project Structure** >> **Artfacts** >> **+** >> **JAR** >> **From modules with dependencies**  
+Menu **File** >> **Project Structure** >> **Artifacts** >> **+** >> **JAR** >> **From modules with dependencies**  
 Select **Mail class**  
 ```
   ch.hakuna.DingzOpenHabHelperApi
