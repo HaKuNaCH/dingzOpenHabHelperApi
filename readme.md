@@ -39,15 +39,15 @@ Token=yourOpenHabApiToken
 ResetMode=true
 ResetValue=0
 ```
-property | description |
---- | --- |
-exposeApiName | URL where the API will be exposed (0.0.0.0 -> can be accessed from anywhere in the subnet) |
-openhabHostname | URL or DNS alias of the OpenHAB instance incl. port |
-allowedDevices | list of allowed devices, will be compared with query parameter "mac" from API call |
-allowedIps | allowed IP addresses for incoming requests |
-Token | OpenHAB API token |
-ResetMode | true or false, if true the state will be set to "action" query parameter and immediately back to "ResetValue" |
-ResetValue | if "ResetMode" is true, the item value will be set to this value after every update |
+| property        | description                                                                                                   |
+|-----------------|---------------------------------------------------------------------------------------------------------------|
+| exposeApiName   | URL where the API will be exposed (0.0.0.0 -> can be accessed from anywhere in the subnet)                    |
+| openhabHostname | URL or DNS alias of the OpenHAB instance incl. port                                                           |
+| allowedDevices  | list of allowed devices, will be compared with query parameter "mac" from API call                            |
+| allowedIps      | allowed IP addresses for incoming requests                                                                    |
+| Token           | OpenHAB API token                                                                                             |
+| ResetMode       | true or false, if true the state will be set to "action" query parameter and immediately back to "ResetValue" |
+| ResetValue      | if "ResetMode" is true, the item value will be set to this value after every update                           |
 
 ### run configuration for local test
 ```
@@ -67,12 +67,12 @@ http://localhost:8000/itemName?action=2
 ```
 query parameters mac & index are not mandatory  
 
-parameter | description |
---- | --- |
-itemName | the itemname in OpenHAB |
-mac | must be in properties.config, when not in url, set allowedDevices=ANY, otherwise call will be rejected |
-index | not used, but is sent by dingz API call |
-action | update string for OpenHAB item |
+| parameter | description                                                                                            |
+|-----------|--------------------------------------------------------------------------------------------------------|
+| itemName  | the itemname in OpenHAB                                                                                |
+| mac       | must be in properties.config, when not in url, set allowedDevices=ANY, otherwise call will be rejected |
+| index     | not used, but is sent by dingz API call                                                                |
+| action    | update string for OpenHAB item                                                                         |
 
 
 ### build standalone jar
@@ -196,11 +196,11 @@ File Rotation:     Rotate File / 1000000 bytes
 
 ### logfile output samples
 ```
-dd.mm.yyyy HH:MM:SS - INFO:  Jersey server starting at http://0.0.0.0:8000/
-dd.mm.yyyy HH:MM:SS - INFO:  Jersey server started at http://0.0.0.0:8000/
-dd.mm.yyyy HH:MM:SS - INFO:  Update item 'itemName' to value 'action' from device 'mac(index)' successfully sent.
-dd.mm.yyyy HH:MM:SS - ERROR: File 'properties.config' not found.
-dd.mm.yyyy HH:MM:SS - ERROR: Commands from device mac not allowed.
-dd.mm.yyyy HH:MM:SS - ERROR: Update item 'itemName' to value 'action' from device 'mac(index)' failed with HTTPXXX.
-dd.mm.yyyy HH:MM:SS - ERROR: OpenHAB not available.
+dd.mm.yyyy HH:mm:ss.SSS - INFO:  Jersey server starting at http://0.0.0.0:8000/
+dd.mm.yyyy HH:mm:ss.SSS - INFO:  Jersey server started at http://0.0.0.0:8000/
+dd.mm.yyyy HH:mm:ss.SSS - INFO:  Update item 'itemName' to value 'action' from device 'mac(index)' successfully sent.
+dd.mm.yyyy HH:mm:ss.SSS - ERROR: File 'properties.config' not found.
+dd.mm.yyyy HH:mm:ss.SSS - ERROR: Commands from device mac not allowed.
+dd.mm.yyyy HH:mm:ss.SSS - ERROR: Update item 'itemName' to value 'action' from device 'mac(index)' failed with HTTPXXX.
+dd.mm.yyyy HH:mm:ss.SSS - ERROR: OpenHAB not available.
 ```
