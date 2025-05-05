@@ -9,4 +9,4 @@ jobs:
         uses: actions/checkout@v2
       - run: |
           ls ${{ github.workspace }}
-      - run: echo "Job status is ${{ job.status }}
+      - run: echo "Job status is ${{ job.status }}"
