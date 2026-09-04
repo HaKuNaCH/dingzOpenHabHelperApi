@@ -1,29 +1,23 @@
 package ch.hakuna;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.text.SimpleDateFormat;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class OpenHabConnect {
-
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
     private static final String OPENHAB_BASEPATH = "/rest/items/";
 
     private static final String OPENHAB_HOSTNAME = ManageConfig.getOpenhabHostname();
     private static final String OPENHAB_TOKEN = ManageConfig.getOpenhabToken();
 
-    private String openHabUri;
-    private String openHabItemName;
-    private String action;
-    private String button;
-    private String mac;
+    private final String openHabUri;
+    private final String openHabItemName;
+    private final String action;
+    private final String button;
+    private final String mac;
 
     // Example:
     // http://10.0.1.9:8082/rest/items/dingzButton3/state
@@ -34,11 +28,11 @@ public class OpenHabConnect {
     public OpenHabConnect(String openHabItemName, String action, String button, String mac) {
         super();
 
-        this.setOpenHabItemName(openHabItemName);
-        this.setAction(action);
-        this.setButton(button);
-        this.setMac(mac);
-        this.setOpenHabUri(OPENHAB_HOSTNAME + OPENHAB_BASEPATH + openHabItemName + "/state");
+        this.openHabItemName = openHabItemName;
+        this.action = action;
+        this.button = button;
+        this.mac = mac;
+        this.openHabUri = OPENHAB_HOSTNAME + OPENHAB_BASEPATH + openHabItemName + "/state";
     }
 
 
@@ -50,18 +44,7 @@ public class OpenHabConnect {
         String result;
 
         try {
-            HttpClient httpclient = HttpClientBuilder.create().build();
-
-            HttpPut httpPut = new HttpPut(this.getOpenHabUri());
-            httpPut.addHeader("Authorization", "Bearer " + OPENHAB_TOKEN);
-            httpPut.addHeader("Accept", "*/*");
-            httpPut.addHeader("Content-Type", "text/plain");
-
-            httpPut.setEntity(new StringEntity(this.getAction()));
-
-            HttpResponse response = httpclient.execute(httpPut);
-            int responseCode = response.getStatusLine().getStatusCode();
-            //String responseMessage = response.getStatusLine().getReasonPhrase();
+            int responseCode = executePut(this.getAction());
 
             // build response string, depending on parameters given
             String device = "";
@@ -70,7 +53,7 @@ public class OpenHabConnect {
             }
 
             if (!button.equals("N/A")) {
-                if (device.equals("")) {
+                if (device.isEmpty()) {
                     device = device + " from button_" + button;
                 } else {
                     device = device + "/button_" + button;
@@ -83,8 +66,7 @@ public class OpenHabConnect {
 
                 // check if reset value is required
                 if (ManageConfig.getResetMode().equals("true")) {
-                    httpPut.setEntity(new StringEntity(ManageConfig.getResetValue()));
-                    httpclient.execute(httpPut);
+                    executePut(ManageConfig.getResetValue());
                 }
 
             } else {
@@ -92,55 +74,41 @@ public class OpenHabConnect {
             }
 
         } catch (IOException ex) {
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            ex.printStackTrace(pw);
             result = "ERROR: OpenHAB not available.";
         }
 
         return result;
     }
 
-    /* getter and setter */
+    private int executePut(String value) throws IOException {
+        URL url = URI.create(this.getOpenHabUri()).toURL();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Authorization", "Bearer " + OPENHAB_TOKEN);
+        connection.setRequestProperty("Accept", "*/*");
+        connection.setRequestProperty("Content-Type", "text/plain; charset=UTF-8");
+
+        byte[] payload = value.getBytes(StandardCharsets.UTF_8);
+        connection.setFixedLengthStreamingMode(payload.length);
+        try (OutputStream outputStream = connection.getOutputStream()) {
+            outputStream.write(payload);
+        }
+
+        int statusCode = connection.getResponseCode();
+        connection.disconnect();
+        return statusCode;
+    }
+
+    /* getter */
 
     public String getOpenHabUri() {
         return openHabUri;
-    }
-
-    public void setOpenHabUri(String openHabUri) {
-        this.openHabUri = openHabUri;
-    }
-
-    public String getOpenHabItemName() {
-        return openHabItemName;
-    }
-
-    public void setOpenHabItemName(String openHabItemName) {
-        this.openHabItemName = openHabItemName;
     }
 
     public String getAction() {
         return action;
     }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getButton() {
-        return button;
-    }
-
-    public void setButton(String button) {
-        this.button = button;
-    }
-
-    public String getMac() {
-        return mac;
-    }
-
-    public void setMac(String mac) {
-        this.mac = mac;
-    }
 
 }

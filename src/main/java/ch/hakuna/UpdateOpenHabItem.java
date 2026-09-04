@@ -4,6 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
@@ -23,26 +24,35 @@ public class UpdateOpenHabItem {
     private String button;
     private String mac;
 
-    private String allowedDevices;
-    private String allowedIps;
-
     /**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
      *
-     * @return WSDL, XSD or XML that will be returned as a application/xml response.
+     * @return WSDL, XSD or XML that will be returned as an application/xml response.
      */
     @GET
     @Produces("text/plain; charset=utf-8")
-    public String getFile(@Context UriInfo uriInfo, @PathParam("resource") String resource, @Context org.glassfish.grizzly.http.server.Request re) {
+    public String getFile(@Context UriInfo uriInfo,
+                          @Context ContainerRequestContext requestContext,
+                          @PathParam("resource") String resource) {
 
         // get allowedDevices string
-        allowedDevices = ManageConfig.getAllowedDevices();
+        String allowedDevices = ManageConfig.getAllowedDevices();
 
         // get allowedIps string
-        allowedIps = ManageConfig.getAllowedIps();
+        String allowedIps = ManageConfig.getAllowedIps();
 
-        // logoutput format
+        String remoteAddr = requestContext.getHeaderString("X-Forwarded-For");
+        if (remoteAddr != null && !remoteAddr.isEmpty()) {
+            remoteAddr = remoteAddr.split(",")[0].trim();
+        } else {
+            remoteAddr = requestContext.getHeaderString("X-Real-IP");
+            if (remoteAddr == null || remoteAddr.isEmpty()) {
+                remoteAddr = "unknown";
+            }
+        }
+
+        // logout format
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         // API call result
@@ -73,9 +83,9 @@ public class UpdateOpenHabItem {
         }
 
         // check if mac/IP is allowed
-        if ((!getAllowedDevices().contains(mac) && !getAllowedDevices().contains("ANY")) ||
-                (!getAllowedIps().contains(re.getRemoteAddr()) && !getAllowedIps().contains("ANY"))) {
-            result.append("ERROR: Commands from device ").append(mac).append(" / IP " + re.getRemoteAddr() + " not allowed.");
+        if ((!allowedDevices.contains(mac) && !allowedDevices.contains("ANY")) ||
+                (!allowedIps.contains(remoteAddr) && !allowedIps.contains("ANY"))) {
+            result.append("ERROR: Commands from device ").append(mac).append(" / IP ").append(remoteAddr).append(" not allowed.");
             System.out.println(sdf.format(timestamp) + " - " + result);
             throw new EmptyStackException();
         } else {
@@ -118,14 +128,5 @@ public class UpdateOpenHabItem {
 
     public void setMac(String mac) { this.mac = mac; }
 
-    public String getAllowedDevices() { return allowedDevices; }
-
-    public void setAllowedDevices(String allowedDevices) {
-        this.allowedDevices = allowedDevices;
-    }
-
-    public String getAllowedIps() { return allowedIps; }
-
-    public void setAllowedIps(String allowedIps) { this.allowedIps = allowedIps; }
 
 }

@@ -12,31 +12,31 @@ public class ManageConfig {
 
     public static String getExposeApiName() { return exposeApiName; }
 
-    public void setExposeApiName(String exposeApiName) { ManageConfig.exposeApiName = exposeApiName; }
+    public static void setExposeApiName(String exposeApiName) { ManageConfig.exposeApiName = exposeApiName; }
 
     public static String getOpenhabHostname() {
         return openhabHostname;
     }
 
-    public void setOpenhabHostname(String openhabHostname) { ManageConfig.openhabHostname = openhabHostname; }
+    public static void setOpenhabHostname(String openhabHostname) { ManageConfig.openhabHostname = openhabHostname; }
 
     public static String getAllowedDevices() {
         return allowedDevices;
     }
 
-    public void setAllowedDevices(String allowedDevices) {
+    public static void setAllowedDevices(String allowedDevices) {
         ManageConfig.allowedDevices = allowedDevices;
     }
 
     public static String getAllowedIps() { return allowedIps; }
 
-    public void setAllowedIps(String allowedIps) { ManageConfig.allowedIps = allowedIps; }
+    public static void setAllowedIps(String allowedIps) { ManageConfig.allowedIps = allowedIps; }
 
     public static String getOpenhabToken() {
         return openhabToken;
     }
 
-    public void setOpenhabToken(String openhabToken) {
+    public static void setOpenhabToken(String openhabToken) {
         ManageConfig.openhabToken = openhabToken;
     }
 
@@ -44,7 +44,7 @@ public class ManageConfig {
         return resetMode;
     }
 
-    public void setResetMode(String resetMode) {
+    public static void setResetMode(String resetMode) {
         ManageConfig.resetMode = resetMode;
     }
 
@@ -52,7 +52,7 @@ public class ManageConfig {
         return resetValue;
     }
 
-    public void setResetValue(String resetValue) {
+    public static void setResetValue(String resetValue) {
         ManageConfig.resetValue = resetValue;
     }
 }
